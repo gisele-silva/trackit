@@ -9,7 +9,7 @@ import axios from "axios";
 
 export default function Login() {
   
-  const { setUser } = useContext(UserContext);
+  const setUser = useContext(UserContext);
   const user = localStorage.getItem("user");
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
@@ -83,7 +83,7 @@ export default function Login() {
             )}
           </Botao>
         </form>
-        <Link to="/inscrever">
+        <Link to="/cadastro">
           <h2>Não tem uma conta? Cadastre-se!</h2>
         </Link>
       </Container>
@@ -103,7 +103,6 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex;
-
   h2 {
     font-size: 14px;
     color: #52b6ff;

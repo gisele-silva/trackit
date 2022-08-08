@@ -44,19 +44,19 @@ export default function HabitosDoDia({ habit, habitosDeHoje }){
 
 	return (
 		<> 
-			<Content>
+			<Container>
 				<div>
 					<h1>{habit.name}</h1>
 					<p>Sequência atual: <Sequence color={habit.done && color}>{habit.currentSequence} {habit.currentSequence===1 ? "dia" : "dias"}</Sequence></p>
 					<p>Seu recorde: <Sequence color={habit.highestSequence>0 && habit.highestSequence===habit.currentSequence}>{habit.highestSequence} {habit.highestSequence===1 ? "dia" : "dias"}</Sequence></p>
 				</div>
 				<Check color={habit.done} onClick={() => FeitoOuNao(habit)}/>
-			</Content>
+			</Container>
 		</>
 	);
 }
 
-const Content = styled.div`
+const Container = styled.div`
     margin: 0 auto;
     height: 94px;
     background: #FFF;
