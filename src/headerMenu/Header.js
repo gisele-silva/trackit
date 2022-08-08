@@ -1,5 +1,5 @@
-import { useContext } from "react";
-import UserContext from "../../contexts/UserContext";
+import React, { useContext } from "react";
+import UserContext from "../components/UserContext";
 import styled from "styled-components";
 
 export default function Header (){

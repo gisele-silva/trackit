@@ -1,9 +1,9 @@
-import { useContext } from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import { Link } from "react-router-dom";
-import Porcentagem from "../components/PorcentagemContext";
+import Porcentagem from "../components/Porcentagem";
 
 export default function Menu () {
     const { porcento } = useContext(Porcentagem);

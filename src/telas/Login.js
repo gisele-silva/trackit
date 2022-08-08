@@ -1,19 +1,28 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import Loader from "react-loader-spinner";
+import { Circles } from "react-loader-spinner";
 import logo from "./logo.png";
 import UserContext from "../components/UserContext";
-import Entrar from "../components/servicos";
 import styled from "styled-components";
+import axios from "axios";
 
 export default function Login() {
+  
   const { setUser } = useContext(UserContext);
   const user = localStorage.getItem("user");
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [botao, setBotao] = useState(true);
+
+  function entrar(conteudo) {
+    const solicitar = axios.post(
+      `https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login`,
+      conteudo
+    );
+    return solicitar;
+  }
 
   useEffect(() => {
     user ? navigate("/today") : setUser(null);
@@ -24,7 +33,7 @@ export default function Login() {
     setBotao(false);
 
     const body = { email, senha };
-    const entrarUser = Entrar(body);
+    const entrarUser = entrar(body);
 
     entrarUser.then((resposta) => {
       const novoUsuario = {
@@ -66,13 +75,13 @@ export default function Login() {
             onChange={(conteudo) => setSenha(conteudo.target.value)}
             required
           />
-          <Button type="submit" disabled={botao === true ? "" : "disabled"}>
+          <Botao type="submit" disabled={botao === true ? "" : "disabled"}>
             {botao === true ? (
               "Entrar"
             ) : (
-              <Loader type="ThreeDots" color="#FFF" height={50} width={50} />
+              <Circles type="ThreeDots" color="#FFF" height={50} width={50} />
             )}
-          </Button>
+          </Botao>
         </form>
         <Link to="/inscrever">
           <h2>Não tem uma conta? Cadastre-se!</h2>
@@ -115,7 +124,7 @@ const Input = styled.input`
   }
 `;
 
-const Button = styled.button`
+const Botao = styled.button`
   width: 94%;
   height: 45px;
   background-color: #52b6ff;
